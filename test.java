@@ -14,7 +14,7 @@ public static void MaxgstP(Basket B){
     int max=0;
     for(int i=0;i<B.product.size();i++){
         // Basket pp = B.get(i);
-        int an = B.gst.get(i)*B.quantity.get(i);
+        int an = B.gst.get(i)*B.quantity.get(i)*B.unitPrice.get(i);
         if(an > max){
             max=an;
             Pro=B.product.get(i);
@@ -31,10 +31,11 @@ public static void TotalAmount(Basket B){
         int discount=0;
 
         //discount
-        if(B.unitPrice.get(i)*B.quantity.get(i)*B.gst.get(i) >= 500){
+        if(B.unitPrice.get(i) >= 500){
             discount = (int)(B.unitPrice.get(i)*.05);
         }
-        ans+=(B.quantity.get(i)*B.unitPrice.get(i)) - discount;
+        int gsta=(B.gst.get(i)*(B.unitPrice.get(i)/100));
+        ans+=(B.quantity.get(i)*B.unitPrice.get(i)) +(B.quantity.get(i)*gsta) - discount;
        
     }
     System.out.println("Total amount - ");
